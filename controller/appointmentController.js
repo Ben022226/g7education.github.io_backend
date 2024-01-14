@@ -30,3 +30,14 @@ exports.returnAppointmentByTutorId = async (req, res) => {
     res.status(500).send('Something broke!');
   }
 };
+
+exports.returnAppointmentById = async (req, res) => {
+  try {
+    const appointment = await Appointments.find({
+      appointmentId: req.params.appointmentId,
+    });
+    res.send(appointment);
+  } catch (err) {
+    res.status(500).send('Something broke!');
+  }
+};

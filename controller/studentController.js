@@ -9,7 +9,7 @@ exports.returnAllStudents = async (req, res) => {
 };
 exports.returnStudentById = async (req, res) => {
   try {
-    const student = await Student.findById(req.params.studentId);
+    const student = await Student.find({ studentId: req.params.studentId });
     res.send(student);
   } catch (err) {
     res.status(500).send('Something broke!');

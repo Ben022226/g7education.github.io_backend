@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 // Create Express app
 const app = express();
@@ -8,7 +9,7 @@ const app = express();
 // Middleware for parsing JSON and urlencoded data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 // Define routes
 app.get('/', (req, res) => {
   res.send('Welcome to my Express app!');

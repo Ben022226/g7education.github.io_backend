@@ -8,4 +8,5 @@ router.get(
 );
 router.get('/tutor/:tutorId', appointmentController.returnAppointmentByTutorId);
 
+router.get('/:appointmentId', appointmentController.returnAppointmentById);
 module.exports = router;
