@@ -7,3 +7,11 @@ exports.returnAllStudents = async (req, res) => {
     res.status(500).send('Something broke!');
   }
 };
+exports.returnStudentById = async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.studentId);
+    res.send(student);
+  } catch (err) {
+    res.status(500).send('Something broke!');
+  }
+};

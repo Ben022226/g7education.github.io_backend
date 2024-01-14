@@ -7,3 +7,12 @@ exports.returnAllTutors = async (req, res) => {
     res.status(500).send('Something broke!');
   }
 };
+
+exports.returnTutorById = async (req, res) => {
+  try {
+    const tutor = await Tutor.findById(req.params.tutorId);
+    res.send(tutor);
+  } catch (err) {
+    res.status(500).send('Something broke!');
+  }
+};
