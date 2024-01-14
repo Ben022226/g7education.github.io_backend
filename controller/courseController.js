@@ -1,19 +1,19 @@
 const Course = require('../models/Course');
 
-exports.returnAllCourses = (req, res) => {
-  Course.find({}, (err, courses) => {
-    if (err) {
-      return res.status(500).send('Something broke!');
-    }
+exports.returnAllCourses = async (req, res) => {
+  try {
+    const courses = await Course.find({});
     res.send(courses);
-  });
+  } catch (err) {
+    res.status(500).send('Something broke!');
+  }
 };
 
-exports.returnCoursesByTutorId = (req, res) => {
-  Course.find({ tutorId: req.params.tutorId }, (err, courses) => {
-    if (err) {
-      return res.status(500).send('Something broke!');
-    }
+exports.returnCoursesByTutorId = async (req, res) => {
+  try {
+    const courses = await Course.find({ tutorId: req.params.tutorId });
     res.send(courses);
-  });
+  } catch (err) {
+    res.status(500).send('Something broke!');
+  }
 };

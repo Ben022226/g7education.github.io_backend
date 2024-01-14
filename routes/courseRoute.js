@@ -1,6 +1,5 @@
-const router = require('express').Router;
-
-const courseController = require('../controllers/courseController');
+const router = require('express').Router();
+const courseController = require('../controller/courseController');
 
 router.get('/all', courseController.returnAllCourses);
 router.get('/tutor/:tutorId', courseController.returnCoursesByTutorId);

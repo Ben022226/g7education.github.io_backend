@@ -1,9 +1,9 @@
 const Student = require('../models/Student');
-exports.returnAllStudents = (req, res) => {
-  Student.find({}, (err, students) => {
-    if (err) {
-      return res.status(500).send('Something broke!');
-    }
+exports.returnAllStudents = async (req, res) => {
+  try {
+    const students = await Student.find({});
     res.send(students);
-  });
+  } catch (err) {
+    res.status(500).send('Something broke!');
+  }
 };

@@ -21,16 +21,27 @@ app.use((err, req, res, next) => {
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.on('error', err => {
+db.on('error', (err) => {
   console.error(err);
   process.exit(1);
 });
 db.once('open', async () => {
   console.log('Mongo connection started on ' + db.host + ':' + db.port);
 });
+// Import routes
+const appointmentRoutes = require('./routes/appointmentRoute');
+const courseRoutes = require('./routes/courseRoute');
+const tutorRoutes = require('./routes/tutorRoute');
+const studentRoutes = require('./routes/studentRoute');
+// Use routes
+app.use('/appointments', appointmentRoutes);
+app.use('/courses', courseRoutes);
+app.use('/tutors', tutorRoutes);
+app.use('/students', studentRoutes);
+
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
